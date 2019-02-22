@@ -4,6 +4,10 @@ import com.lambdaschool.todo.models.Users;
 import com.lambdaschool.todo.models.ToDo;
 import com.lambdaschool.todo.repository.ToDoRepository;
 import com.lambdaschool.todo.repository.UsersRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +16,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+@Api(value = "ToDo Sprint", description = "ToDo Sprint Challenge API")
 @RestController
 @RequestMapping(path = {}, produces = MediaType.APPLICATION_JSON_VALUE)
 public class EndpointController
@@ -21,6 +26,15 @@ public class EndpointController
 
     @Autowired
     ToDoRepository todorepos;
+
+    @ApiOperation(value = "list All Customers", response = List.class)
+    @ApiResponses(value =
+            {
+                    @ApiResponse(code = 200, message = "Successfully recetrieve list"),
+                    @ApiResponse(code = 401, message = "You are not authorized to the view the resource"),
+                    @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+                    @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            })
 
     @GetMapping("/users")
     public List<Users> allUsers()
