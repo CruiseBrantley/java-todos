@@ -27,7 +27,7 @@ public class EndpointController
     @Autowired
     ToDoRepository todorepos;
 
-    @ApiOperation(value = "list All Customers", response = List.class)
+    @ApiOperation(value = "list All Users", response = List.class)
     @ApiResponses(value =
             {
                     @ApiResponse(code = 200, message = "Successfully recetrieve list"),
